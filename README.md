@@ -24,7 +24,6 @@ Enabled stop protection on a running EC2 instance to prevent accidental stopping
 
 ### Day 9: Enable Termination Protection for EC2 Instance
 ![Day 9 - Enable Termination Protection 1](Screenshots/day-9-termination-protection-1.png)  
-![Day 9 - Enable Termination Protection 2](Screenshots/day-9-termination-protection-2.png)  
 
 Enabled termination (deletion) protection on running instances.
 
@@ -72,18 +71,9 @@ Created a point-in-time snapshot of an EBS volume.
 
 **Learnings:** Snapshots are incremental backups — cost-effective for data protection and recovery.
 
-### Day 16: Create IAM User
-![Day 16 - IAM User Details](Screenshots/day-16-iam-details.png)  
+### Day 16: Create IAM User 
 ![Day 16 - IAM Password Settings](Screenshots/day-16-iam-password.png)  
 
 Created a new IAM user (`iamuser_john`) with console access, auto-generated password, and forced password reset on first login.
 
 **Learnings:** Never use the root account for daily tasks. Use IAM users with least privilege, enable MFA, and enforce strong password policies.
-
-### Additional Screenshots: EC2 Exploration
-![EC2 Dashboard](Screenshots/ec2-dashboard.png)  
-![EC2 Instances List](Screenshots/ec2-instances-list.png)  
-
-Viewed the EC2 dashboard (noted API errors from experimentation) and instance list (running + terminated instances).
-
-**Learnings:** Monitoring resource usage and quotas is essential, especially on free tier.
