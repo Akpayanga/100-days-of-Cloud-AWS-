@@ -77,3 +77,9 @@ Created a point-in-time snapshot of an EBS volume.
 Created a new IAM user (`iamuser_john`) with console access, auto-generated password, and forced password reset on first login.
 
 **Learnings:** Never use the root account for daily tasks. Use IAM users with least privilege, enable MFA, and enforce strong password policies.
+
+### Day 17 - Created an IAM Group.
+
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/un0zpcdfnsn8e6s05fyd.png)
+
+IAM Groups are containers that make it easier to manage permissions for multiple users at once. You attach policies to the group, then add users to it—so everyone in the group gets the same permissions without having to configure each user individually.
