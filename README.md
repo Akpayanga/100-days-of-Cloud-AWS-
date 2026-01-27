@@ -83,3 +83,27 @@ Created a new IAM user (`iamuser_john`) with console access, auto-generated pass
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/un0zpcdfnsn8e6s05fyd.png)
 
 IAM Groups are containers that make it easier to manage permissions for multiple users at once. You attach policies to the group, then add users to it—so everyone in the group gets the same permissions without having to configure each user individually.
+
+### Day 18: Create Read-Only IAM Policy for EC2 Console Access
+Created a custom IAM policy with read-only permissions for EC2 console access (using the visual policy editor or JSON).
+![Day 18 - ReadOnly Policy](Screenshots/Day-18-Create-ReadOnly-Polycy)  
+Learnings:
+Custom policies let you grant exactly the permissions needed. For read-only EC2 access, use actions like ec2:Describe*, ec2:Get*, and ec2:List* with Effect: Allow and no write/delete actions. This follows the principle of least privilege and is safer than attaching broad policies like AdministratorAccess.
+
+### Day 19: Attach IAM Policy to IAM User
+Attached the read-only EC2 policy (created on Day 18) directly to the IAM user (iamuser_john).
+Image
+Learnings:
+Policies can be attached directly to users, but this works best for one-off or temporary access. For better scalability, it’s usually recommended to attach policies to groups or roles instead. After attachment, the user should now have read-only visibility in the EC2 console without being able to modify anything.
+
+### Day 20: Create IAM Role for EC2 with Policy Attachment
+Created an IAM role for EC2 instances, selected the EC2 trusted entity, and attached a policy (e.g., AmazonS3ReadOnlyAccess or a custom one).
+Image
+Learnings:
+IAM roles are the preferred way to give permissions to AWS services (like EC2 instances). Unlike users, roles have no permanent credentials—instead, temporary credentials are provided via the instance metadata service. This is more secure than storing access keys on the instance. Once attached to an instance, applications running on it can use the role’s permissions automatically.
+
+### Day 21: Setting Up an EC2 Instance with an Elastic IP for Application Hosting
+Launched (or configured) an EC2 instance, associated an Elastic IP to it, and prepared it for hosting an application (e.g., updated security group for HTTP/SSH, installed necessary software).
+Image
+Learnings:
+Elastic IP provides a static public IPv4 address that stays the same even after the instance is stopped and started again—perfect for web servers, APIs, or any public-facing application. Combined with a proper security group (allow inbound 80/443 for web traffic and 22 for SSH), this setup gives a reliable, publicly accessible hosting environment in AWS.
