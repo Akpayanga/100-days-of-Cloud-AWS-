@@ -111,7 +111,9 @@ IAM roles are the preferred way to give permissions to AWS services (like EC2 in
 ### Day 21: Setting Up an EC2 Instance with an Elastic IP for Application Hosting
 Launched (or configured) an EC2 instance, associated an Elastic IP to it, and prepared it for hosting an application (e.g., updated security group for HTTP/SSH, installed necessary software).
 
-![Day 21 - Launching EC2 Instance](Screenshots/Day 21 -launching an isntance.png)  ![Day 21 - Attaching Elasric IP with Instance](Screenshots/Day 21 - Attaching an Elastic IP with an Instance.png)  
+![Day 21 - Launching EC2 Instance](Screenshots/Day 21 -launching an isntance.png)
+
+![Day 21 - Attaching Elasric IP with Instance](Screenshots/Day 21 - Attaching an Elastic IP with an Instance.png)  
 
 Learnings:
 Elastic IP provides a static public IPv4 address that stays the same even after the instance is stopped and started again—perfect for web servers, APIs, or any public-facing application. Combined with a proper security group (allow inbound 80/443 for web traffic and 22 for SSH), this setup gives a reliable, publicly accessible hosting environment in AWS.
