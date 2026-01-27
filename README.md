@@ -86,7 +86,7 @@ IAM Groups are containers that make it easier to manage permissions for multiple
 
 ### Day 18: Create Read-Only IAM Policy for EC2 Console Access
 Created a custom IAM policy with read-only permissions for EC2 console access (using the visual policy editor or JSON).
-![Day 18 - ReadOnly Policy](Screenshots/Day-18-Create-ReadOnly-Polycy)  
+![Day 18 - ReadOnly Policy](Screenshots/Day-18-Create-ReadOnly-Polycy.png)  
 Learnings:
 Custom policies let you grant exactly the permissions needed. For read-only EC2 access, use actions like ec2:Describe*, ec2:Get*, and ec2:List* with Effect: Allow and no write/delete actions. This follows the principle of least privilege and is safer than attaching broad policies like AdministratorAccess.
 
