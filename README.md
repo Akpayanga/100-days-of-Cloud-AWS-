@@ -115,3 +115,57 @@ Launched (or configured) an EC2 instance, associated an Elastic IP to it, and pr
 
 Learnings:
 Elastic IP provides a static public IPv4 address that stays the same even after the instance is stopped and started again—perfect for web servers, APIs, or any public-facing application. Combined with a proper security group (allow inbound 80/443 for web traffic and 22 for SSH), this setup gives a reliable, publicly accessible hosting environment in AWS.
+
+### Day 22: Configuring Secure SSH Access to an EC2 Instance
+Configured secure SSH access to an EC2 instance using a key pair, updated the security group to allow inbound SSH (port 22) only from my IP, and tested connection with ssh -i key.pem ec2-user@instance-public-ip.
+
+![Day 21 - Launching EC2 Instance](Screenshots/Day-21-launching-an-isntance.png)   ![Day 21 - Attaching Elasric IP with Instance](Screenshots/Day-21-Attaching-an-Elastic-IP-with-an-Instance.png) 
+
+Learnings:
+Never open SSH to 0.0.0.0/0 in production. Restrict to your IP or a bastion host/VPN. Use key-based authentication (disable password login in sshd_config), keep private keys secure, and consider adding fail2ban or AWS Systems Manager Session Manager for even stronger security.
+Day 23: Data Migration Between S3 Buckets Using AWS CLI
+Day 23 - S3 Data Migration with AWS CLI
+Migrated objects from one S3 bucket to another using AWS CLI commands (e.g. aws s3 sync, aws s3 cp --recursive, or aws s3 mv).
+
+![Day 21 - Launching EC2 Instance](Screenshots/Day-21-launching-an-isntance.png)   ![Day 21 - Attaching Elasric IP with Instance](Screenshots/Day-21-Attaching-an-Elastic-IP-with-an-Instance.png) 
+
+Learnings:
+aws s3 sync is powerful and efficient for mirroring buckets — it only copies changed/new files. Use --delete carefully (it removes files in destination not in source). For large migrations, consider S3 Batch Operations or AWS DataSync instead of CLI for better monitoring and error handling.
+Day 24: Setting Up an Application Load Balancer for an EC2 Instance
+Day 24 - Application Load Balancer Setup
+Created an Application Load Balancer (ALB), configured a target group with my EC2 instance, set up HTTP/HTTPS listeners, and tested traffic routing.
+
+![Day 21 - Launching EC2 Instance](Screenshots/Day-21-launching-an-isntance.png)   ![Day 21 - Attaching Elasric IP with Instance](Screenshots/Day-21-Attaching-an-Elastic-IP-with-an-Instance.png) 
+
+Learnings:
+ALB operates at Layer 7 (HTTP/HTTPS), supports path-based/host-based routing, sticky sessions, and SSL termination. Always use a target group health check to ensure only healthy instances receive traffic. ALB + Auto Scaling Group is the standard way to make applications highly available.
+Day 25: Setting Up an EC2 Instance and CloudWatch Alarm
+Day 25 - CloudWatch Alarm for EC2
+Launched/configured an EC2 instance and created a CloudWatch alarm (e.g. for CPUUtilization > 80% for 5 minutes) with SNS notification.
+
+![Day 21 - Launching EC2 Instance](Screenshots/Day-21-launching-an-isntance.png)   ![Day 21 - Attaching Elasric IP with Instance](Screenshots/Day-21-Attaching-an-Elastic-IP-with-an-Instance.png) 
+
+Learnings:
+CloudWatch alarms monitor metrics and trigger actions (notifications, auto-scaling, Lambda). Basic monitoring is free; detailed monitoring (1-minute granularity) costs extra. Alarms help detect issues early — combine with notifications or auto-recovery for better resilience.
+Day 26: Configuring an EC2 Instance as a Web Server with Nginx
+Day 26 - Nginx Web Server on EC2
+Launched an EC2 instance, installed and configured Nginx (sudo yum install nginx or apt install nginx), edited the default site config, started/enabled the service, and tested with curl/browser.
+![Day 21 - Launching EC2 Instance](Screenshots/Day-21-launching-an-isntance.png)   ![Day 21 - Attaching Elasric IP with Instance](Screenshots/Day-21-Attaching-an-Elastic-IP-with-an-Instance.png) 
+Learnings:
+Nginx is lightweight, fast, and great for serving static content or as a reverse proxy. Basic steps: install → configure server block → open port 80 in security group → start service. For production, add SSL (Let’s Encrypt), logging, and security headers.
+Day 27: Configuring a Public VPC with an EC2 Instance for Internet Access
+Day 27 - Public VPC with Internet Access
+Created a VPC with a public subnet, Internet Gateway, route table update (0.0.0.0/0 → IGW), launched an EC2 instance in the public subnet, assigned public IP, and verified internet connectivity.
+![Day 21 - Launching EC2 Instance](Screenshots/Day-21-launching-an-isntance.png)   ![Day 21 - Attaching Elasric IP with Instance](Screenshots/Day-21-Attaching-an-Elastic-IP-with-an-Instance.png) 
+Learnings:
+For public internet access: VPC → Internet Gateway → Public Subnet → Route Table (default route to IGW) → Instance with public IP/subnet auto-assign enabled. Security group still controls inbound/outbound traffic. This is the foundation for most public-facing workloads.
+Day 28: Creating a Private ECR Repository
+Day 28 - Create Private ECR Repository
+Created a private Amazon Elastic Container Registry (ECR) repository to store Docker images securely.
+![Day 21 - Launching EC2 Instance](Screenshots/Day-21-launching-an-isntance.png)   ![Day 21 - Attaching Elasric IP with Instance](Screenshots/Day-21-Attaching-an-Elastic-IP-with-an-Instance.png) 
+Learnings:
+ECR is AWS’s private Docker registry — fully integrated with IAM for access control. Private repos are not publicly accessible. Use aws ecr get-login-password + docker login to push/pull images. Combine with ECS, EKS or Lambda container images for containerized workloads.
+
+
+
+
