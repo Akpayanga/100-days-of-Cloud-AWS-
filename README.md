@@ -1,10 +1,6 @@
 # 100-days-of-Cloud-AWS-
 This is my live portfolio for the **100 Days of Cloud** challenge.   I'm documenting each day's task with real AWS console screenshots.  I'll keep updating this README as I progress.
-
-## Progress Overview
-![Progress Overview](Screenshots/progress-overview.png)  
-
-Completed all tasks up to Day 16. Below are the days I currently have screenshots for, shown in chronological order.
+Below are the days I currently have screenshots for, shown in chronological order.
 
 ## Completed Tasks with Screenshots
 
